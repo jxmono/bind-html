@@ -4,9 +4,11 @@ define(["github/adioo/bind/v0.2.0/bind", "github/adioo/events/v0.1.0/events", "/
 
         var self;
         var config;
+        var template;
 
         function processConfig(config) {
             config.options = config.options || {};
+            config.template.binds = config.template.binds || [];
 
             config.options.hidden = config.options.hidden || false;
 
@@ -18,6 +20,12 @@ define(["github/adioo/bind/v0.2.0/bind", "github/adioo/events/v0.1.0/events", "/
             // initialize the globals
             self = this;
             config = processConfig(conf);
+            if (config.container) {
+                container = $(config.container, module.dom);
+            } else {
+                container = $(module.dom);
+            }
+            template = $(config.template.value, module.dom);
 
             // run the binds
             for (var i in config.binds) {
@@ -28,6 +36,29 @@ define(["github/adioo/bind/v0.2.0/bind", "github/adioo/events/v0.1.0/events", "/
 
             if (config.options.hidden) {
                 self.hide();
+            }
+        }
+
+        function render(item) {
+            switch (config.template.type) {
+                case "selector":
+                    renderSelector.call(self, item);
+                case "html":
+                    // TODO
+                case "url":
+                    // TODO
+            }
+        }
+
+        function renderSelector(item) {
+            var newItem = $(template).clone();
+            newItem.removeClass("template");
+            container.html(newItem);
+
+            for (var i in config.template.binds) {
+                var bindObj = config.template.binds[i];
+                bindObj.context = newItem;
+                Bind.call(self, bindObj, item);
             }
         }
 
@@ -72,10 +103,8 @@ define(["github/adioo/bind/v0.2.0/bind", "github/adioo/events/v0.1.0/events", "/
         }
 
         function update(data) {
-
             clear();
-
-            // TODO
+            render.call(self, data);
         }
 
         function show() {

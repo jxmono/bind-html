@@ -4,6 +4,7 @@ define(["github/adioo/bind-html/v0.1.0/html"], function(Html) {
 
     function init(config) {
         self = new Html(this, config);
+        self.lang = "de";
     }
 
     return init;
