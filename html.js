@@ -10,8 +10,6 @@ define(["github/adioo/bind/v0.2.0/bind", "github/adioo/events/v0.1.0/events", "/
         function processConfig(config) {
             config.options = config.options || {};
 
-            config.options.hidden = config.options.hidden || false;
-
             return config;
         }
 
@@ -25,10 +23,6 @@ define(["github/adioo/bind/v0.2.0/bind", "github/adioo/events/v0.1.0/events", "/
             template.remove();
 
             Events.call(self, config);
-
-            if (config.options.hidden) {
-                self.hide();
-            }
         }
 
         function render(item) {
