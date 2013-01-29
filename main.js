@@ -1,4 +1,4 @@
-define(["github/adioo/bind-html/v0.1.1/html"], function(Html) {
+define(["github/adioo/bind-html/v0.1.2/html"], function(Html) {
 
     var self;
 
