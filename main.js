@@ -1,11 +1,6 @@
-define(["github/adioo/bind-html/v0.1.4/html"], function(Html) {
+var Html = require('./html.js');
 
-    var self;
-
-    function init(config) {
-        self = new Html(this, config);
-    }
-
-    return init;
-});
+module.exports = function (config) {
+    Html(this, config);
+}
 
