@@ -111,5 +111,5 @@ module.exports = function (module, config) {
     html.init(config);
 
     return html;
-}
+};
 
