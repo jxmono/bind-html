@@ -24,6 +24,7 @@ function Html (module) {
         template.remove();
 
         Events.call(self, config);
+        self.emit("ready", config);
     }
 
     function render(item) {
@@ -112,4 +113,3 @@ module.exports = function (module, config) {
 
     return html;
 };
-
