@@ -4,6 +4,8 @@ Bind HTML
 ## Changelog
 
 ### dev
+
+### v0.1.2
  - emit ready
  - updated Bind and Events module versions
 
